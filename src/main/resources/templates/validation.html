@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 方法一 -->
+<!-- 
+    <form th:action="@{/sampleV}" method="post" th:object="${sampleValidationForm}">
+        <div>
+            <label>Text:</label>
+            <input type="text" th:field="*{text}" class="always-assigned" th:errorclass="error-style"/>            
+            <span th:if="${#fields.hasErrors('text')}">エラーです。</span>
+        </div>
+        <div>
+            <label>Number:</label>
+            <input type="text" th:field="*{number}" class="always-assigned" th:errorclass="error-style"/>
+            <ul th:each="error : ${#fields.errors('number')}">
+                <li th:text="${error}"></li>
+            </ul>
+        </div>
+        
+        <input type="submit" value="Submit">
+    </form>
+-->
+<!-- 方法二 -->
+<!-- 
+    <form th:action="@{/sampleV}" method="post" th:object="${sampleValidationForm}">
+        <div>
+            <h3 th:if="${#fields.hasAnyErrors()}">エラーがあります</h3>
+            <p>-----------------------------------------------------------</p>
+            <ul th:each="error : ${#fields.errors()}">
+                <li th:text="${error}"></li>
+            </ul>
+            <p>===========================================================</p>
+            <ul>
+                <li th:each="error: ${#fields.allErrors()}">
+                    [[${error}]]
+                </li>
+            </ul>
+        </div>
+        <div>
+            <label>Text:</label>
+            <input type="text" th:field="*{text}" class="always-assigned" th:errorclass="error-style"/>
+        </div>
+        <div>
+            <label>Number:</label>
+            <input type="text" th:field="*{number}" class="always-assigned" th:errorclass="error-style"/>
+        </div>
+        
+        <input type="submit" value="Submit">
+    </form>
+ -->
+ <!-- 方法三 -->
+     <form th:action="@{/sampleV}" method="post" th:object="${sampleValidationForm}">
+        <div>
+            <h3>[[${#fields.hasGlobalErrors()}]]</h3>
+            <p>+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</p>
+            <h3>[[${#fields.hasErrors('global')}]]</h3>
+            <p>-----------------------------------------------------------</p>
+            <ul th:each="error : ${#fields.errors()}">
+                <li th:text="${error}"></li>
+            </ul>
+            <p>===========================================================</p>
+            <ul>
+                <li th:each="error: ${#fields.allErrors()}">
+                    [[${error}]]
+                </li>
+            </ul>
+        </div>
+        <div>
+            <label>Text:</label>
+            <input type="text" th:field="*{text}" class="always-assigned" th:errorclass="error-style"/>
+        </div>
+        <div>
+            <label>Number:</label>
+            <input type="text" th:field="*{number}" class="always-assigned" th:errorclass="error-style"/>
+        </div>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

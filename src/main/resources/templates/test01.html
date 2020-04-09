@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>test01</div>
+	<h1 th:text="${message02}"></h1>
+
+	<h1 th:text="${message03}"></h1>
+	
+	<ul>
+		<li th:each="element, status : ${aList}">
+			index = [[${status.index}]],
+			count = [[${status.count}]],
+			size = [[${status.size}]],
+			current = [[${status.current}]],
+			even = [[${status.even}]],
+			odd = [[${status.odd}]],
+			first = [[${status.first}]],
+			last = [[${status.last}]]
+		</li>
+	</ul>
+
+	<ul>
+		<li th:each="entry : ${aMap}">
+			key=[[${entry.key}]], value=[[${entry.value}]]
+		</li>
+	</ul>
+
+	<h1 th:text="#{foo.message00}"></h1>
+	<h1 th:text="#{foo.message01('せかい')}"></h1>
+</body>
+</html>
